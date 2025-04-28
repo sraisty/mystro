@@ -1,9 +1,9 @@
 import React from "react";
-import { Leaflet } from "./MyMap";
+import { Leaflet } from "../map/MyMap";
 import { LeafletMouseEvent } from "leaflet";
-import { PolygonLayers } from "./PolygonLayers";
-import { useAppDispatch, useAppSelector } from "../store";
-import { addPoint } from "../store/polygonSlice";
+import { PolygonLayers } from "../map/PolygonLayers";
+import { useAppDispatch, useAppSelector } from "../../store";
+import { addPoint } from "../../store/polygonSlice";
 
 export const PolygonContainer = ({ leaflet }: { leaflet: Leaflet }) => {
   if (!leaflet) {

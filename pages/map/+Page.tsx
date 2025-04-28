@@ -1,5 +1,5 @@
 import React from "react";
-import { MyMap } from "../../components/MyMap";
+import { MyMap } from "./MyMap";
 import { css } from "@emotion/react";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { resetPolygons, savePolygon } from "../../store/polygonSlice";
@@ -9,11 +9,9 @@ export default function MapPage() {
 
   const onClickSavePolygon = () => {
     dispatch(savePolygon());
-    console.log("Polygon saved");
   };
   const onResetPolygons = () => {
     dispatch(resetPolygons());
-    console.log("Polygons reset");
   };
 
   const unsavedPolygon = useAppSelector((state) => state.polygons.unsavedPolygon);

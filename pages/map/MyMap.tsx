@@ -35,7 +35,7 @@ export function MyMap() {
   if (!leaflet) {
     return <div>Loading...</div>;
   }
-  const { MapContainer, TileLayer, Marker } = leaflet;
+  const { MapContainer, TileLayer } = leaflet;
 
   return (
     <MapContainer
@@ -48,7 +48,6 @@ export function MyMap() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; OpenStreetMap contributors"
       />
-
       <PolygonContainer leaflet={leaflet} />
     </MapContainer>
   );
