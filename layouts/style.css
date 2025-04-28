@@ -1,0 +1,15 @@
+/* This file should apply global styles only. Prefer using CSS-in-JS. */
+
+/* Links */
+a {
+  text-decoration: none;
+}
+
+/* Reset */
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
