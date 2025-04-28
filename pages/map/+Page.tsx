@@ -1,8 +1,25 @@
 import React from "react";
 import { MyMap } from "../../components/MyMap";
 import { css } from "@emotion/react";
+import { useAppDispatch, useAppSelector } from "../../store";
+import { resetPolygons, savePolygon } from "../../store/polygonSlice";
 
 export default function MapPage() {
+  const dispatch = useAppDispatch();
+
+  const onClickSavePolygon = () => {
+    dispatch(savePolygon());
+    console.log("Polygon saved");
+  };
+  const onResetPolygons = () => {
+    dispatch(resetPolygons());
+    console.log("Polygons reset");
+  };
+
+  const unsavedPolygon = useAppSelector((state) => state.polygons.unsavedPolygon);
+  const savedPolygons = useAppSelector((state) => state.polygons.savedPolygons);
+  const enableResetButton = savedPolygons.length > 0 || unsavedPolygon.length > 0;
+
   return (
     <div css={styles.pageContainer}>
       <h1>Select Map Areas</h1>
@@ -10,8 +27,12 @@ export default function MapPage() {
         <MyMap />
       </div>
       <div css={styles.buttonContainer}>
-        <button css={styles.button}>Button 1</button>
-        <button css={styles.button}>Button 2</button>
+        <button css={styles.button} onClick={onClickSavePolygon} disabled={unsavedPolygon.length < 3}>
+          Save Polygon
+        </button>
+        <button css={styles.button} onClick={onResetPolygons} disabled={!enableResetButton}>
+          Reset
+        </button>
       </div>
     </div>
   );

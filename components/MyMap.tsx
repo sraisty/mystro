@@ -1,11 +1,15 @@
 import React, { useEffect } from "react";
 import "leaflet/dist/leaflet.css";
 import type * as ReactLeaflet from "react-leaflet";
+import { PolygonContainer } from "./PolygonContainer";
+import { LatLngExpression } from "leaflet";
 
-type Leaflet = {
+const SAN_FRANCISCO_CENTER: LatLngExpression = [37.7749, -122.4194]; // San Francisco
+
+export type Leaflet = {
   MapContainer: typeof ReactLeaflet.MapContainer;
   TileLayer: typeof ReactLeaflet.TileLayer;
-  Circle: typeof ReactLeaflet.Circle;
+  CircleMarker: typeof ReactLeaflet.CircleMarker;
   Marker: typeof ReactLeaflet.Marker;
   Polygon: typeof ReactLeaflet.Polygon;
   useMapEvents: typeof ReactLeaflet.useMapEvents;
@@ -19,7 +23,7 @@ export function MyMap() {
       setLeaflet({
         MapContainer: lazyLoadedLeaflet.MapContainer,
         TileLayer: lazyLoadedLeaflet.TileLayer,
-        Circle: lazyLoadedLeaflet.Circle,
+        CircleMarker: lazyLoadedLeaflet.CircleMarker,
         Polygon: lazyLoadedLeaflet.Polygon,
         useMapEvents: lazyLoadedLeaflet.useMapEvents,
         Marker: lazyLoadedLeaflet.Marker,
@@ -35,8 +39,8 @@ export function MyMap() {
 
   return (
     <MapContainer
-      center={[37.7749, -122.4194]} // San Francisco
-      zoom={13}
+      center={SAN_FRANCISCO_CENTER} // San Francisco
+      zoom={12}
       style={{ height: "400px", width: "100%" }}
       scrollWheelZoom={true}
     >
@@ -44,7 +48,8 @@ export function MyMap() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; OpenStreetMap contributors"
       />
-      <Marker position={[37.7749, -122.4194]}></Marker>
+
+      <PolygonContainer leaflet={leaflet} />
     </MapContainer>
   );
 }
