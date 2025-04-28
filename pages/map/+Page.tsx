@@ -61,5 +61,15 @@ const styles = {
     border: "none",
     borderRadius: "5px",
     cursor: "pointer",
+    ":disabled": {
+      backgroundColor: "#ccc",
+      cursor: "not-allowed",
+    },
+    ":hover:not(:disabled)": {
+      backgroundColor: "#0056b3",
+    },
+    ":active:not(:disabled)": {
+      backgroundColor: "#004085",
+    },
   }),
 };
